@@ -61,33 +61,28 @@ var setup = function(array)
         .call(yAxis)
         .call(yAxis)
     
-    drawPoints(array,xScale,yScale,cScale,index)   
+    drawPoints1(array,xScale,yScale,cScale)   
 }
 
-var drawPoints = function(array,xScale,yScale,cScale,index)
+var drawPoints1 = function(array,xScale,yScale,cScale)
 {
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    d3.select("#graph")
+    .append("path")
+    .datum(array)
+    .attr("fill", "none")
+    .attr("stroke", "red")
+    .attr("stroke-width", 2)
+    .attr("d", d3.line()
+    .x(function(d)
+    {
+      
+        return xScale(d.seasons)
+        
+    })
+    .y(function(d)
+    {
+        
+        return yScale(d.RgoalsP);
+        
+    }))
 }
