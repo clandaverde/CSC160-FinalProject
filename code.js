@@ -1,5 +1,5 @@
 var screen = {width: 1200, height: 720};
-var margins = {top: 30, right: 50, bottom: 50, left: 50};
+var margins = {top: 30, right: 50, bottom: 50, left: 26};
 
 var Promise = d3.csv("soccer.csv")
     Promise.then(
@@ -32,7 +32,7 @@ var setup = function(array)
     var height = screen.height - margins.top - margins.bottom;
     
     var xScale = d3.scaleLinear()
-                    .domain([2009,2018])
+                    .domain([2009,2017])
                     .range([0,width])
     
     var yScale = d3.scaleLinear()
@@ -61,28 +61,92 @@ var setup = function(array)
         .call(yAxis)
         .call(yAxis)
     
-    drawPoints1(array,xScale,yScale,cScale)   
+    Rgoals(array,xScale,yScale,cScale) 
+    Rassists(array,xScale,yScale,cScale) 
+    Mgoals(array,xScale,yScale,cScale)
+    Massists(array,xScale,yScale,cScale)
 }
 
-var drawPoints1 = function(array,xScale,yScale,cScale)
+var Rgoals = function(array,xScale,yScale,cScale)
 {
     d3.select("#graph")
     .append("path")
     .datum(array)
     .attr("fill", "none")
     .attr("stroke", "red")
-    .attr("stroke-width", 2)
+    .attr("stroke-width", 4)
     .attr("d", d3.line()
     .x(function(d)
-    {
-      
-        return xScale(d.seasons)
-        
-    })
+   {
+    var seasons = parseInt(d.Seasons)
+        return xScale(seasons)
+   })
     .y(function(d)
     {
-        
-        return yScale(d.RgoalsP);
-        
+    var rgoal = parseInt(d.RgoalsP)
+        return yScale(rgoal)
+    }))
+}
+    
+var Rassists = function(array,xScale,yScale,cScale)
+{
+    d3.select("#graph")
+    .append("path")
+    .datum(array)
+    .attr("fill", "none")
+    .attr("stroke", "blue")
+    .attr("stroke-width", 4)
+    .attr("d", d3.line()
+    
+    .x(function(d)
+   {
+    var seasons = parseInt(d.Seasons)
+        return xScale(seasons)
+   })
+    .y(function(d)
+    {
+    var rassist = parseInt(d.RassistsP)
+        return yScale(rassist)
+    }))
+}
+
+var Mgoals = function(array,xScale,yScale,cScale)
+{
+    d3.select("#graph")
+    .append("path")
+    .datum(array)
+    .attr("fill", "none")
+    .attr("stroke", "green")
+    .attr("stroke-width", 4)
+    .attr("d", d3.line()
+    .x(function(d)
+   {
+    var seasons = parseInt(d.Seasons)
+        return xScale(seasons)
+   })
+    .y(function(d)
+    {
+    var mgoal = parseInt(d.MgoalsP)
+        return yScale(mgoal)
+    }))
+}
+var Massists = function(array,xScale,yScale,cScale)
+{
+    d3.select("#graph")
+    .append("path")
+    .datum(array)
+    .attr("fill", "none")
+    .attr("stroke", "black")
+    .attr("stroke-width", 4)
+    .attr("d", d3.line()
+    .x(function(d)
+   {
+    var seasons = parseInt(d.Seasons)
+        return xScale(seasons)
+   })
+    .y(function(d)
+    {
+    var massist = parseInt(d.MassistsP)
+        return yScale(massist)
     }))
 }
