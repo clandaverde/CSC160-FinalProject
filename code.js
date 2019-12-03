@@ -1,10 +1,11 @@
-var screen = {width: 1200, height: 720};
-var margins = {top: 30, right: 50, bottom: 50, left: 26};
+var screen = {width: 1300, height: 800};
+var margins = {top: 40, right: 60, bottom: 50, left: 51};
 
 var Promise = d3.csv("soccer.csv")
     Promise.then(
         function(data)
     {
+        svg(data)
         setup(data)
         console.log("success", data);
     },
@@ -57,7 +58,7 @@ var setup = function(array)
     d3.select(".axis")
         .append("g")
         .attr("id","yAxis")
-        .attr("transform","translate(25,"+margins.top+")")
+        .attr("transform","translate(50,"+margins.top+")")
         .call(yAxis)
         .call(yAxis)
     
@@ -86,6 +87,25 @@ var Rgoals = function(array,xScale,yScale,cScale)
     var rgoal = parseInt(d.RgoalsP)
         return yScale(rgoal)
     }))
+    .on("mouseover", function(d) {
+        
+    d3.select("#tooltip")
+    .style("left", (d3.event.pageX + 20) + "px")
+    .style("top", (d3.event.pageY - 25) + "px")
+    .select("#value")
+    .text("Cristiano Ronaldo's goals percentage")
+    
+    d3.select("#tooltip")
+    .classed("hidden", false)
+    })
+    
+    .on("mouseout", function() {
+        
+        
+    d3.select("#tooltip")
+    .classed("hidden", true);
+        
+    })      
 }
     
 var Rassists = function(array,xScale,yScale,cScale)
@@ -94,7 +114,7 @@ var Rassists = function(array,xScale,yScale,cScale)
     .append("path")
     .datum(array)
     .attr("fill", "none")
-    .attr("stroke", "blue")
+    .attr("stroke", "red")
     .attr("stroke-width", 4)
     .attr("d", d3.line()
     
@@ -108,6 +128,26 @@ var Rassists = function(array,xScale,yScale,cScale)
     var rassist = parseInt(d.RassistsP)
         return yScale(rassist)
     }))
+    .on("mouseover", function(d) {
+        
+    d3.select("#tooltip")
+    .style("left", (d3.event.pageX + 20) + "px")
+    .style("top", (d3.event.pageY - 25) + "px")
+    .select("#value")
+    .text("Cristiano Ronaldo's assists percentage");
+    
+    d3.select("#tooltip")
+    .classed("hidden", false)
+    })
+    
+    .on("mouseout", function() {
+        
+        
+    d3.select("#tooltip")
+    .classed("hidden", true);
+        
+    }) 
+
 }
 
 var Mgoals = function(array,xScale,yScale,cScale)
@@ -116,7 +156,7 @@ var Mgoals = function(array,xScale,yScale,cScale)
     .append("path")
     .datum(array)
     .attr("fill", "none")
-    .attr("stroke", "green")
+    .attr("stroke", "blue")
     .attr("stroke-width", 4)
     .attr("d", d3.line()
     .x(function(d)
@@ -129,6 +169,25 @@ var Mgoals = function(array,xScale,yScale,cScale)
     var mgoal = parseInt(d.MgoalsP)
         return yScale(mgoal)
     }))
+    .on("mouseover", function(d) {
+        
+    d3.select("#tooltip")
+    .style("left", (d3.event.pageX + 20) + "px")
+    .style("top", (d3.event.pageY - 25) + "px")
+    .select("#value")
+    .text("Lionel Messi's goals percentage");
+    
+    d3.select("#tooltip")
+    .classed("hidden", false)
+    })
+    
+    .on("mouseout", function() {
+        
+        
+    d3.select("#tooltip")
+    .classed("hidden", true);
+        
+    }) 
 }
 var Massists = function(array,xScale,yScale,cScale)
 {
@@ -136,7 +195,7 @@ var Massists = function(array,xScale,yScale,cScale)
     .append("path")
     .datum(array)
     .attr("fill", "none")
-    .attr("stroke", "black")
+    .attr("stroke", "blue")
     .attr("stroke-width", 4)
     .attr("d", d3.line()
     .x(function(d)
@@ -149,4 +208,82 @@ var Massists = function(array,xScale,yScale,cScale)
     var massist = parseInt(d.MassistsP)
         return yScale(massist)
     }))
+    .on("mouseover", function(d) {
+        
+    d3.select("#tooltip")
+    .style("left", (d3.event.pageX + 20) + "px")
+    .style("top", (d3.event.pageY - 25) + "px")
+    .select("#value")
+    .text("Lionel Messi's assists percentage");
+    
+    d3.select("#tooltip")
+    .classed("hidden", false)
+    })
+    
+    .on("mouseout", function() {
+        
+        
+    d3.select("#tooltip")
+    .classed("hidden", true);
+        
+    }) 
+    
 }
+var svg = function(legendary)
+{
+    //creates ronaldo's red circle
+    d3.select("svg")
+        .append("g")
+        .append("circle")
+        .attr("cx",150)
+        .attr("cy",50)
+        .attr("r", 7)
+        .style("fill", "red")
+    //creates ronaldo's name
+     d3.select("svg")
+        .append("text")
+        .attr("x", 170)
+        .attr("y", 50)
+        .text("Cristiano Ronaldo")
+        .style("font-size", "20px")
+        .attr("alignment-baseline","middle")
+    //creates messi's blue circle
+    d3.select("svg")
+        .append("g")
+        .append("circle")
+        .attr("cx",150)
+        .attr("cy",80)
+        .attr("r", 7)
+        .style("fill", "blue")
+    //creates messi's name
+    d3.select("svg")
+        .append("text")
+        .attr("x", 170)
+        .attr("y", 82)
+        .text("Lionel Messi")
+        .style("font-size", "20px")
+        .attr("alignment-baseline","middle")
+}
+
+
+
+
+
+
+
+// begins new bar graph
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
