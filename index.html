@@ -2,14 +2,31 @@
 <head>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://d3js.org/d3.v5.min.js"></script> 
+    
 </head>
 <body>
-    <h1>Messi vs Ronaldo: why Messi's better!</h1>
+    
+    <div class="container">
+        <div class="text-block">
+            <h1>Messi vs Ronaldo</h1>
+            <p>Why Messi is better!</p>
+        </div>
+    </div>
     
     <svg></svg>
+    
+    <div id="tooltip" class="hidden">
+        <p><span id="value"></span></p>
+        <p><span id="info"></span>(%)</p>
+    </div>
+    
     <br>
-    <button id="click">Click here for Ballon D'or victories</button>
+    
+    <div id="button"><button id="click">Ballon D'or victories</button></div>
+    
     <script src="code.js"></script>
+    
 </body>
 
 </html>
+
