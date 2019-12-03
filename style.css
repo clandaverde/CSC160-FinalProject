@@ -1,8 +1,78 @@
-body{
-    background-color: azure
+body {
+    background-color: lightblue;
 }
 h1{
     text-align: center;
-    background-color: red;  
+    background-image: url(fcbarca.jpg);
+        
+}
+#tooltip {
+    
+    position: absolute;
+    width: 184px;
+    height: auto;
+    padding: 10px;
+    background-color: grey;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4); 
+    -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4); 
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4); 
+    pointer-events: none;
+}
+#tooltip.hidden { 
+    display: none;
+}
+#tooltip p { 
+    margin: 0;
+    font-family: monospace; 
+    font-size: 16px;
+    line-height: 20px; 
+    text-align: center
+}
+#button {
+    
+    padding: inherit;
+    height: 50px;
+    width: 100px;
+}
+#xAxis {
+    font-size: 20px;
+    color: #404040;
+    
+    
+    
     
 }
+#yAxis {
+
+    font-size: 20px;
+    color: #404040;
+    
+    
+}
+#info {
+    font-size: 100px;
+}
+
+.text-block {
+    position: absolute;
+    bottom: 650px;
+    right: 20px;
+    background-color: #5218F0;
+    color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+    font-size: 20px;
+}
+#graph {
+    
+    position: relative;
+    top: 200px;
+    
+    
+}
+
+
