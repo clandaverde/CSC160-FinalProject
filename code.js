@@ -5,9 +5,14 @@ var Promise = d3.csv("soccer.csv")
     Promise.then(
         function(data)
     {
+         d3.select("#click")
+        .on("click", function(d){
+    
+    
+    setup2(data)
+})
         svg2(data)
         setup(data)
-        setup2(data)
         console.log("success", data);
     },
         function(err)
@@ -313,9 +318,14 @@ var svg2 = function(legend)
         .call(yAxis)
         .call(yAxis)
     
+    d3.select("#title")
+        .text("Messi VS Ronaldo's assists")
+    
     Rballon(array2,xScale,yScale,cScale)
     Mballon(array2,xScale,yScale,cScale)
+    
 }
+        
 
  //Messi's ballon d'ors
 var Rballon = function(array2,xScale,yScale,cScale)
@@ -329,7 +339,7 @@ var Rballon = function(array2,xScale,yScale,cScale)
         .append("rect")
         .attr("fill", "red")
         .attr("x", function(d, i) {
-            return i * 160 + 100
+            return i * 160 + 105
         })
         .attr("y", function(d){
         
@@ -340,6 +350,25 @@ var Rballon = function(array2,xScale,yScale,cScale)
         .attr("height", function (d) {
         
             return yScale(6 - d.RcumulativeW);
+        
+    }) 
+    .on("mouseover", function(d) {
+        
+    d3.select("#tooltip")
+        .style("left", (d3.event.pageX + 20) + "px")
+        .style("top", (d3.event.pageY - 25) + "px")
+        .select("#value")
+        .text("Cristiano Ronaldo's ballon d'or victories");
+    
+    d3.select("#tooltip")
+        .classed("hidden", false)
+    })
+    
+    .on("mouseout", function() {
+        
+        
+    d3.select("#tooltip")
+        .classed("hidden", true);
         
     }) 
 }
@@ -361,11 +390,31 @@ var Mballon = function(array2,xScale,yScale,cScale)
        var Mball = parseInt(d.McumulativeW)
             return yScale(Mball) + 40  
     })
-        .attr("width", 20)
+        .attr("width", "29px")
         .attr("height", function (d) {
         
             return yScale(6 - d.McumulativeW);
         
-    })   
+    }) 
+ .on("mouseover", function(d) {
+        
+    d3.select("#tooltip")
+        .style("left", (d3.event.pageX + 20) + "px")
+        .style("top", (d3.event.pageY - 25) + "px")
+        .select("#value")
+        .text("Lionel Messi's ballon d'or victories");
+    
+    d3.select("#tooltip")
+        .classed("hidden", false)
+    })
+    
+    .on("mouseout", function() {
+        
+        
+    d3.select("#tooltip")
+        .classed("hidden", true);
+        
+    }) 
 }
+
 
