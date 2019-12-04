@@ -42,8 +42,6 @@ h1{
     color: #a50044;
     
     
-    
-    
 }
 #yAxis {
 
@@ -99,4 +97,10 @@ h2{
     text-align: center;
     color: #a50044;
     font-size: 20px;
+}
+#graph1{
+    background-color: lightgrey;
+}
+#graph2{
+    background-color: lightgrey;
 }
