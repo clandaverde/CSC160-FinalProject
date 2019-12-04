@@ -322,7 +322,7 @@ var svg2 = function(legend)
         .text("Messi VS Ronaldo's assists")
     
     d3.select("#sub")
-        .text("Represents a cumulative amount of trophies")
+        .text("Represented as a cumulative amount of trophies over each season")
     
     Rballon(array2,xScale,yScale,cScale)
     Mballon(array2,xScale,yScale,cScale)
