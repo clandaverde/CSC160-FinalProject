@@ -39,7 +39,7 @@ h1{
 }
 #xAxis {
     font-size: 20px;
-    color: #404040;
+    color: #a50044;
     
     
     
@@ -48,7 +48,7 @@ h1{
 #yAxis {
 
     font-size: 20px;
-    color: #404040;
+    color: #a50044;
     
     
 }
@@ -72,4 +72,31 @@ h1{
     
     text-align: center;
 }
+#click {
+    background-color: #a50044;
+    height: 100px;
+    width: 200px;
+    font-size: 30px;
+    font-family: cursive;
+}
+h2{
+    color: crimson;
+    font-size: 50px;
 
+}
+#xAxis2{
+    
+    font-size: 20px;
+    color: #a50044;
+}
+#yAxis2{
+    
+    font-size: 20px;
+    color: #a50044;
+    
+}
+#sub{
+    text-align: center;
+    color: #a50044;
+    font-size: 20px;
+}
