@@ -1,12 +1,13 @@
 var screen = {width: 1300, height: 800};
-var margins = {top: 40, right: 60, bottom: 50, left: 51};
+var margins = {top: 40, right: 60, bottom: 60, left: 51};
 
 var Promise = d3.csv("soccer.csv")
     Promise.then(
         function(data)
     {
-        svg(data)
+        svg2(data)
         setup(data)
+        setup2(data)
         console.log("success", data);
     },
         function(err)
@@ -17,13 +18,13 @@ var Promise = d3.csv("soccer.csv")
 
 var setup = function(array)
 {
-    var svg = d3.select("svg")
-    .attr("width", screen.width)
-    .attr("height", screen.height)
-    
-    d3.select("svg")
+    var svg = d3.select("#graph1")
         .attr("width", screen.width)
         .attr("height", screen.height)
+    
+    //d3.select("#graph1")
+        //.attr("width", screen.width)
+       // .attr("height", screen.height)
         .append("g")
         .attr("id", "graph")
         .attr("transform","translate("+margins.left+
@@ -45,7 +46,7 @@ var setup = function(array)
     var xAxis = d3.axisBottom(xScale)
     var yAxis = d3.axisLeft(yScale)
     
-    d3.select("svg")
+    d3.select("#graph1")
         .append("g")
         .classed("axis",true);
     
@@ -229,7 +230,7 @@ var Massists = function(array,xScale,yScale,cScale)
     }) 
     
 }
-var svg = function(legendary)
+var svg2 = function(legend)
 {
     //creates ronaldo's red circle
     d3.select("svg")
@@ -266,24 +267,105 @@ var svg = function(legendary)
 }
 
 
+// begins new bar graph for ballon d'or victories
 
 
+ var setup2 = function(array2)
+{
+    var svg3 = d3.select("#graph2")
+        .attr("width", screen.width)
+        .attr("height", screen.height)
+        .append("g")
+        .attr("id", "Bargraph")
+        .attr("transform","translate("+margins.left+
+                            ","+margins.top+")");
+              
+    var width = screen.width - margins.left - margins.right;
+    var height = screen.height - margins.top - margins.bottom;
+    
+    var xScale = d3.scaleLinear()
+                    .domain([2009,2017])
+                    .range([0,width])
+    
+    var yScale = d3.scaleLinear()
+                    .domain([0,6])
+                    .range([height,0])
+    
+    var cScale = d3.scaleOrdinal(d3.schemeTableau10)
+    
+    var xAxis = d3.axisBottom(xScale)
+    var yAxis = d3.axisLeft(yScale)
+    
+    d3.select("#graph2")
+        .append("g")
+        .classed("axis",true);
+    
+    d3.select("#graph2")
+        .append("g")
+        .attr("id","xAxis2")
+        .attr("transform","translate("+margins.left+","+(margins.top+height) +")")
+        .call(xAxis)
+    
+    d3.select("#graph2")
+        .append("g")
+        .attr("id","yAxis2")
+        .attr("transform","translate(50,"+margins.top+")")
+        .call(yAxis)
+        .call(yAxis)
+    
+    Rballon(array2,xScale,yScale,cScale)
+    Mballon(array2,xScale,yScale,cScale)
+}
 
-
-
-// begins new bar graph
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ //Messi's ballon d'ors
+var Rballon = function(array2,xScale,yScale,cScale)
+{
+    
+    d3.select("#graph2")
+        .append("g")
+        .selectAll("rect")
+        .data(array2)
+        .enter()
+        .append("rect")
+        .attr("fill", "red")
+        .attr("x", function(d, i) {
+            return i * 160 + 100
+        })
+        .attr("y", function(d){
+        
+        var Rball = parseInt(d.RcumulativeW)
+            return yScale(Rball) + 40 
+    })
+        .attr("width", 40)
+        .attr("height", function (d) {
+        
+            return yScale(6 - d.RcumulativeW);
+        
+    }) 
+}
+//Ronaldos ballon d'ors
+var Mballon = function(array2,xScale,yScale,cScale)
+{
+    d3.select("#graph2")
+        .append("g")
+        .selectAll("rect")
+        .data(array2)
+        .enter()
+        .append("rect")
+        .attr("fill", "blue")
+        .attr("x", function(d, i) {
+            return i * (screen.width / array2.length) + 50 
+    })
+        .attr("y", function(d){
+        
+       var Mball = parseInt(d.McumulativeW)
+            return yScale(Mball) + 40  
+    })
+        .attr("width", 20)
+        .attr("height", function (d) {
+        
+            return yScale(6 - d.McumulativeW);
+        
+    })   
+}
 
