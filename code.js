@@ -319,7 +319,7 @@ var svg2 = function(legend)
         .call(yAxis)
     
     d3.select("#title")
-        .text("Messi VS Ronaldo's assists")
+        .text("Messi VS Ronaldo's ballon d'or victories")
     
     d3.select("#sub")
         .text("Represented as a cumulative amount of trophies over each season")
