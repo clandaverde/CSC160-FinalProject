@@ -341,8 +341,10 @@ var Rballon = function(array2,xScale,yScale,cScale)
         .enter()
         .append("rect")
         .attr("fill", "red")
-        .attr("x", function(d, i) {
-            return i * 160 + 105
+        .attr("x", function(d) {
+        
+        var Rseas = parseInt(d.Seasons)
+            return xScale(Rseas) + 5
         })
         .attr("y", function(d){
         
@@ -385,15 +387,17 @@ var Mballon = function(array2,xScale,yScale,cScale)
         .enter()
         .append("rect")
         .attr("fill", "blue")
-        .attr("x", function(d, i) {
-            return i * (screen.width / array2.length) + 50 
+        .attr("x", function(d) {
+        
+        var Mseas = parseInt(d.Seasons)
+            return xScale(Mseas) + 50        
     })
         .attr("y", function(d){
         
        var Mball = parseInt(d.McumulativeW)
             return yScale(Mball) + 40  
     })
-        .attr("width", "29px")
+        .attr("width", "40")
         .attr("height", function (d) {
         
             return yScale(6 - d.McumulativeW);
